@@ -8,14 +8,14 @@ from bs4 import BeautifulSoup
 ################################
 # About
 ################################
-
-This script reads RSS feeds from most newznab based indexers (tested with nzbgeek and dog). 
-It then checks if you have any of the shows in the RSS feed added to sonarr, if not, adds them.
-
-The intention of this is to auto add 4K shows to a seperate 4k Sonarr instance as 4k versions become available.
-
-Run this script on a cron.
-
+#
+# This script reads RSS feeds from most newznab based indexers (tested with nzbgeek and dog). 
+# It then checks if you have any of the shows in the RSS feed added to sonarr, if not, adds them.
+#
+# The intention of this is to auto add 4K shows to a seperate 4k Sonarr instance as 4k versions become available.
+#
+# Run this script on a cron.
+#
 ################################
 # Config
 ################################
