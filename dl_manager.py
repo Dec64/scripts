@@ -12,7 +12,7 @@ import shutil
 # Config
 ################################
 
-# Set on feature to False that you do not want
+# Set any feature to False that you do not want
 pause_checker = True
 app_cleaner = True
 nzbget_cleaner = True
