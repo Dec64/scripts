@@ -20,6 +20,10 @@ from bs4 import BeautifulSoup
 # Config
 ################################
 
+# Add rocket chat webhook here if you want to send notifcation on adding shows
+# Leave blank if you do not want to use
+uri = ''
+
 sonarr_url = 'https://sonarr4k.domain.com:443'
 sonarr_api = ''
 sonarr_path = '/mnt/unionfs/Media/4K-TV'
@@ -129,13 +133,33 @@ def library_compare(source, new):
     return library
 
 
+def send_notif(info):
+    data = {
+        "username": "Sonarr RSS Bot",
+        "icon_emoji": ":robot:",
+        "attachments": [
+            {
+                "title": "Sonarr RSS Feed",
+                "text": "{} Show(s) where added to sonarr".format(info)
+            }
+        ]
+    }
+
+    r = requests.post(uri, json.dumps(data)).content
+    return r
+
+
 if __name__ == '__main__':
     library = get_library()
     rss_library = get_rss_tvdbid()
     content = library_compare(library, rss_library)
+    logger.info(content)
+    logger.info(library)
     if len(content) == 0:
         logger.info('no shows to add')
     else:
         for show in content:
             send_to_sonarr(show)
+    if uri:
+        send_notif(len(content))
         logger.info('Finished')
