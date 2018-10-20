@@ -160,6 +160,6 @@ if __name__ == '__main__':
     else:
         for show in content:
             send_to_sonarr(show)
-    if uri:
-        send_notif(len(content))
-        logger.info('Finished')
+        if uri:
+            send_notif(len(content))
+            logger.info('Finished')
