@@ -108,11 +108,11 @@ class Rtorrent:
         with self.xmlrpc as proxy:
             return proxy.d.message(t_hash)
 
-    def ratio_check(self, t_hash):
+    def ratio_check(self, t_hash, ratio_limit):
         with self.xmlrpc as proxy:
             ratio = proxy.d.ratio(t_hash)
             left = proxy.d.left_bytes(t_hash)
-            if left == 0 and ratio > 1100:
+            if left == 0 and ratio > int(ratio_limit):
                 return True
             else:
                 return False
