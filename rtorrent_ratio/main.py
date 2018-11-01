@@ -8,6 +8,9 @@ from utils.rtorrent import Rtorrent
 # How long in seconds torrent must be to consider removing
 torrent_age = 600
 
+# Min ratio torrent must be to consider removing ( 1000 is a 1:1 ratio )
+ratio_limit = 1100
+
 # https://user:pass@rutorrent.domain.com
 url = ''
 
@@ -38,7 +41,7 @@ for torrent in torrents:
         rtorrent.delete(torrent)
         print('Deleted due unregistered torrent:\n{}'.format(torrents[torrent]['name']))
         continue
-    if rtorrent.time_test(torrent, torrent_age) and rtorrent.ratio_check(torrent):
+    if rtorrent.time_test(torrent, torrent_age) and rtorrent.ratio_check(torrent, ratio_limit):
         rtorrent.stop(torrent)
         delete_folder(torrents[torrent]['base_path'])
         rtorrent.delete(torrent)
