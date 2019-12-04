@@ -78,4 +78,4 @@ for episode in missing_episodes['records']:
     print("waiting {} seconds".format(delay))
     time.sleep(delay)
 
-print("Finished")
+print("#################\n### Finished ###\n#################")
