@@ -56,9 +56,9 @@ def get_missing_list():
     r = requests.get(host + 'api/wanted/missing?{}'.format(data), headers=headers, timeout=60, json=data)
     try:
         if r.status_code == 401:
-            logger.warning("Error when connecting to sonarr, unauthorised. check api/url")
+            logger.warning("Error when connecting to radarr, unauthorised. check api/url")
     except requests.ConnectionError:
-        logger.warning("Can not connect to sonarr check if sonarr is up, or URL is right")
+        logger.warning("Can not connect to radarr check if radarr is up, or URL is right")
     return r.json()
 
 
